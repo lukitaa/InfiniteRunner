@@ -9,12 +9,6 @@ public class PlayerManagerScript : MonoBehaviour {
 	public float distanceToGround;
 	public float movementSize;
 	public float movementSpeed;
-	public bool isMoving {
-		get { 
-			return (moveTo != Vector3.zero) ? true : false;	
-		}
-		set{ _isMoving = value; }
-	}
 	//Private variables
 	Transform playerInstance;
 	float currentHorizontalPosition;
@@ -37,10 +31,19 @@ public class PlayerManagerScript : MonoBehaviour {
 
 	//Function to move the player forward
 	public void MovePlayerForward(float zMovement){
-		//Change the transform of the object
-		Vector3 newPosition = playerInstance.position;
-		newPosition.z += zMovement;
-		playerInstance.position = newPosition;
+		//moveTo = playerInstance.position;
+		moveTo.z += zMovement;
+		Debug.Log (zMovement);
+	}
+
+	//Function to move the player horizontally
+	public void MovePlayerSideway(float horizontalMovement){
+		if ((horizontalMovement == 1 && currentHorizontalPosition != 1) || (horizontalMovement == -1 && currentHorizontalPosition != -1)) {
+			//Change the horizontal position where the player should move to
+			moveTo.x += movementSize * horizontalMovement;
+			//Change the current position
+			currentHorizontalPosition += horizontalMovement;
+		}
 	}
 
 	//Function to make the player jump
@@ -49,18 +52,6 @@ public class PlayerManagerScript : MonoBehaviour {
 			playerInstance.rigidbody.AddForce(new Vector3(0f,yMovement,0f),ForceMode.Impulse);
 	}
 
-	//Function to move the player horizontally
-	public void MovePlayerSideway(float horizontalMovement){
-		if ((horizontalMovement == 1 && currentHorizontalPosition != 1) || (horizontalMovement == -1 && currentHorizontalPosition != -1)) {
-			//Move the player
-			Vector3 newPosition = playerInstance.position;
-			newPosition.x += movementSize * horizontalMovement;
-			//playerInstance.position = newPosition;
-			moveTo = newPosition;
-			//Change the current position
-			currentHorizontalPosition += horizontalMovement;
-		}
-	}
 
 	//If the player is hitting the ground returns true, otherwise false
 	bool canJump(){
@@ -68,19 +59,8 @@ public class PlayerManagerScript : MonoBehaviour {
 	}
 
 	//
-	void Update(){
-		//If there's not a point where the player should move to do nothing
-		if (!isMoving)
-			return;
-		//Move the object based on what type of movement the object has
-		playerInstance.position = Vector3.MoveTowards(playerInstance.position, moveTo, Time.deltaTime * movementSpeed);
-		//Get the distance squared of the current position of the object to the position of the point to go of the path
-		float distanceSquared = (playerInstance.position - moveTo).sqrMagnitude;
-		//Check if the distance position is less than the MaxDistanceToGoal set in beforehand to start
-		//Moving to the next point, in that case, get the next position that we should move to
-		if (distanceSquared < 0.2f * 0.2f)
-			moveTo = Vector3.zero;
-
+	void FixedUpdate(){
+		playerInstance.position = Vector3.Lerp(playerInstance.position, moveTo, Time.deltaTime * movementSpeed);
 	}
 
 }

@@ -24,17 +24,17 @@ public class InputManagerScript : MonoBehaviour {
 	//Function to check horizontal movement
 	void HorizontalMovement(){
 		//Check the horizontal movement
-		if(Input.GetButtonDown("Horizontal") && !PlayerManagerScript.instance.isMoving)
+		if(Input.GetButtonDown("Horizontal"))
 			PlayerManagerScript.instance.MovePlayerSideway (Input.GetAxisRaw("Horizontal"));
 	}
 
 	void VerticalMovement(){
 		//Do we want the player to automatically move forward? or do we want the player to be able to move by himself?
 		//		IF WANTED TO MOVE AUTOMATICALLY:
-		//verticalMovement = maxSpeed * Time.deltaTime;
+		verticalMovement = maxSpeed * Time.deltaTime;
 		//		IF WANTED TO MOVE MANUALLY
 		//		Grab the current horizontal and vertical movement
-		verticalMovement = Input.GetAxis ("Vertical") * maxSpeed * Time.deltaTime;
+		//verticalMovement = Input.GetAxis ("Vertical") * maxSpeed * Time.deltaTime;
 		//If the vertical movement isn't 0, then the player should move (Used for the manual movement, otherwise it always move)
 		if (verticalMovement != 0)
 			PlayerManagerScript.instance.MovePlayerForward(verticalMovement);

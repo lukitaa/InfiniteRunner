@@ -10,6 +10,7 @@ public class GameManagerScript : MonoBehaviour {
 	//Private variables
 	private List<Transform> spawnedBlocks;
 	private float lastBlockZ;
+	private int currentScore;
 	// Use this for initialization
 	void Awake () {
 		//Generate the singleton instance of this class
@@ -43,8 +44,10 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	//Function that gots called from other scripts to move the blocks to the last position
-	public void MoveLastBlock(Transform block){
+	public void MoveLastBlock(Transform block, int scoreToAdd){
 		ChangeBlockPosition (block);
+		currentScore += scoreToAdd;
+		UIManagerScript.instance.setScoreTo (currentScore);
 	}
 
 }
