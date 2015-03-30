@@ -33,7 +33,6 @@ public class PlayerManagerScript : MonoBehaviour {
 	public void MovePlayerForward(float zMovement){
 		//moveTo = playerInstance.position;
 		moveTo.z += zMovement;
-		Debug.Log (zMovement);
 	}
 
 	//Function to move the player horizontally
