@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraFollowPlayer : MonoBehaviour {
+public class FollowTarget : MonoBehaviour {
 	//Public variables
 	public float yOffset;
 	public float zOffset;

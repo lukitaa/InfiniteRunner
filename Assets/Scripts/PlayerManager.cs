@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerManagerScript : MonoBehaviour {
+public class PlayerManager : MonoBehaviour {
 	//Public variables
-	static internal PlayerManagerScript instance;
-	public CameraFollowPlayer cameraScript;
+	static internal PlayerManager instance;
+	public FollowTarget cameraScript;
 	public Transform playerPrefab;
 	public float distanceToGround;
 	public float movementSize;

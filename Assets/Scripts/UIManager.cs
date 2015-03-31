@@ -2,9 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class UIManagerScript : MonoBehaviour {
+public class UIManager : MonoBehaviour {
 	//Public variables
-	static internal UIManagerScript instance;
+	static internal UIManager instance;
 	//Private variables
 	Text scoreText;
 
@@ -16,8 +16,8 @@ public class UIManagerScript : MonoBehaviour {
 	}
 
 	//Change the UI.Text text to have the new score.
-	public void setScoreTo(int score){
-		scoreText.text = "Current score: " + score;
+	public void setScoreTo(float score){
+		scoreText.text = "Current score: " + score.ToString ("F2");
 	}
 
 }

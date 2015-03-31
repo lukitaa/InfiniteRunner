@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WorldManagerScript : MonoBehaviour {
+public class WorldManager : MonoBehaviour {
 	//Public variables
-	static internal WorldManagerScript instance;
+	static internal WorldManager instance;
 	public Transform[] blocksPrefabs;
 	public int maxBlocksOnRoad;
 	//Private variables
@@ -23,7 +23,7 @@ public class WorldManagerScript : MonoBehaviour {
 			for (int i = 0; i < maxBlocksOnRoad; i++) {
 				Transform newBlockPrefab = GenerateRandomBlock();
 				//Send the game manager the prefab to be instantiated.
-				GameManagerScript.instance.AddNewBlock(newBlockPrefab);
+				GameManager.instance.AddNewBlock(newBlockPrefab);
 			}
 		}
 	}

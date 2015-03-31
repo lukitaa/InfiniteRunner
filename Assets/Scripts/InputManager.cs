@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InputManagerScript : MonoBehaviour {
+public class InputManager : MonoBehaviour {
 	//Public variables
-	static internal InputManagerScript instance;
+	static internal InputManager instance;
 	public float maxSpeed;
 	public float jumpPower;
 	//Private variables
@@ -25,7 +25,7 @@ public class InputManagerScript : MonoBehaviour {
 	void HorizontalMovement(){
 		//Check the horizontal movement
 		if(Input.GetButtonDown("Horizontal"))
-			PlayerManagerScript.instance.MovePlayerSideway (Input.GetAxisRaw("Horizontal"));
+			PlayerManager.instance.MovePlayerSideway (Input.GetAxisRaw("Horizontal"));
 	}
 
 	void VerticalMovement(){
@@ -37,13 +37,13 @@ public class InputManagerScript : MonoBehaviour {
 		//verticalMovement = Input.GetAxis ("Vertical") * maxSpeed * Time.deltaTime;
 		//If the vertical movement isn't 0, then the player should move (Used for the manual movement, otherwise it always move)
 		if (verticalMovement != 0)
-			PlayerManagerScript.instance.MovePlayerForward(verticalMovement);
+			PlayerManager.instance.MovePlayerForward(verticalMovement);
 	}
 
 	void JumpMovement(){
 		//Check for jumping
 		if (Input.GetButtonDown("Jump"))
-			PlayerManagerScript.instance.PlayerJump (jumpPower);
+			PlayerManager.instance.PlayerJump (jumpPower);
 	}
 
 }
