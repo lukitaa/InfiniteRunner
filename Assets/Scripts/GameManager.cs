@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour {
 
 	public void GameOver() {
 		//TODO: Implement the game over function.
+		Application.LoadLevel ("GameOver");
 	}
 
 }

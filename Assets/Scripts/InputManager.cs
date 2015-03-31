@@ -43,7 +43,7 @@ public class InputManager : MonoBehaviour {
 	void JumpMovement(){
 		//Check for jumping
 		if (Input.GetButtonDown("Jump"))
-			PlayerManager.instance.PlayerJump (jumpPower);
+			PlayerManager.instance.MovePlayerJump (jumpPower);
 	}
 
 }
