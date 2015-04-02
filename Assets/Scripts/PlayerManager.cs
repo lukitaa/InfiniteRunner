@@ -37,4 +37,9 @@ public class PlayerManager : MonoBehaviour {
 	public void MovePlayerJump(float yMovement) {
 		playerMovement.PlayerJump (yMovement);
 	}
+
+	//TODO: Implement slide movement
+	public void MovePlayerSlide(){
+
+	}
 }

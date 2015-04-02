@@ -36,18 +36,22 @@ public class PlayerMovement : MonoBehaviour {
 		if (canJump())
 			mTransform.rigidbody.AddForce(new Vector3(0f,yMovement,0f),ForceMode.Impulse);
 	}
-	
-	
+
 	//If the player is hitting the ground returns true, otherwise false
 	bool canJump(){
 		return Physics.Raycast(mTransform.transform.position, -Vector3.up, distanceToGround);
 	}
-	
-	//
+
+	public void PlayerSlide(){
+		//TODO: Implement the slide movement
+	}
+
+	//Every phisics update, change the position of the player.
 	void FixedUpdate(){
 		mTransform.position = Vector3.Lerp(mTransform.position, moveTo, Time.deltaTime * movementSpeed);
 	}
 
+	//If we collide with something other than the floor, then it's a game over.
 	void OnCollisionEnter(Collision other){
 		if (other.gameObject.tag == "Obstacle") {
 			GameManager.instance.GameOver();

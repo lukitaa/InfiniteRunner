@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 	//Public variables
 	static internal GameManager instance;
 	public float blocksPositionOffset;
+	public float obstacleOffset;
 	public Transform blocksParent;
 	//Private variables
 	private List<Transform> spawnedBlocks;
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour {
 		mTransform = transform;
 	}
 
+	/// <summary>
+	/// The following 3 functions are used for the blocks of the road.
+	/// </summary>
 	//Function that instantiates a new block into the road and adds it into the currents blocks list
 	public void AddNewBlock(Transform block){
 		//Instantiate the new block into the world.
@@ -52,6 +56,30 @@ public class GameManager : MonoBehaviour {
 	public void MoveLastBlock(Transform block){
 		ChangeBlockPosition (block);
 
+	}
+
+	/// <summary>
+	/// The upcoming 3 functions are used for the obstacles of the game.
+	/// </summary>
+	public void AddNewObstacle(Transform newObstaclePrefab){
+		int obstacleX = Random.Range(-1,1);
+		//Instantiate the new block into the world.
+		Transform newObstacle = (Transform) Instantiate (newObstaclePrefab);
+		//Set the parent of the new block to be the blocks container.
+		newObstacle.parent = blocksParent;
+		//Change the block newObstacle to fit into the last spot of the road.
+		ChangeObstaclePosition (newObstacle,obstacleX);
+	}
+	
+
+	public void MoveLastObstacle(Transform obstacle){
+		int obstacleX = Random.Range(-1,1);
+		ChangeObstaclePosition (obstacle,obstacleX);
+	}
+
+	void ChangeObstaclePosition(Transform obstacle, int position){
+		Vector3 newPos = new Vector3 (obstacleOffset * position, 1f, --lastBlockZ);
+		obstacle.position = newPos;
 	}
 
 	//Look for the player transform
@@ -85,7 +113,11 @@ public class GameManager : MonoBehaviour {
 
 	public void GameOver() {
 		//TODO: Implement the game over function.
+		//TODO: Implement the game over function.
 		Application.LoadLevel ("GameOver");
 	}
+
+	//TODO: Implement a way to make the obstacles appear (randomly/based on distance/points)
+	//TODO: Implement a way to make the obstacles appear (randomly/based on distance/points)
 
 }

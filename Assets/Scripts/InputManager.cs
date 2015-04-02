@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour {
 		VerticalMovement ();
 		HorizontalMovement ();
 		JumpMovement ();
+		SlideMovement ();
 	}
 
 	//Function to check horizontal movement
@@ -44,6 +45,14 @@ public class InputManager : MonoBehaviour {
 		//Check for jumping
 		if (Input.GetButtonDown("Jump"))
 			PlayerManager.instance.MovePlayerJump (jumpPower);
+	}
+
+	void SlideMovement(){
+		//Check if the player pressed the slide key.
+		if(Input.GetButtonDown("Vertical")){
+			if(Input.GetAxisRaw("Vertical") < 0)
+				Debug.Log("GOTTA SLIDE MAN");
+		}
 	}
 
 }
