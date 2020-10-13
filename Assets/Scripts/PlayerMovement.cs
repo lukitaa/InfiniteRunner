@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour {
 	//Function to make the player jump
 	public void PlayerJump(float yMovement){
 		if (canJump())
-			mTransform.rigidbody.AddForce(new Vector3(0f,yMovement,0f),ForceMode.Impulse);
+			mTransform.GetComponent<Rigidbody>().AddForce(new Vector3(0f,yMovement,0f),ForceMode.Impulse);
 	}
 
 	//If the player is hitting the ground returns true, otherwise false
